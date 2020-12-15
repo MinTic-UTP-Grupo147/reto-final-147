@@ -1,4 +1,6 @@
-const routerx = require('express-promise-router');
+// const routerx = require('express-promise-router');
+// importar express
+const router = require('express').Router();
 // traernos el users de api
 const apiRouterUser = require('./api/users')
 // traernos el articulo de api
@@ -8,10 +10,11 @@ const categoriaRouter = require('./api/categoria');
 
 
 
-const router = routerx();
+// const router = routerx();
+
 // Decirle que use las diferentes rutas
 router.use('/usuario', apiRouterUser);
-router.use('/categoria', articuloRouter);
-router.use('/articulo', categoriaRouter);
+//router.use('/categoria', categoriaRouter);
+//router.use('/articulo', articuloRouter);
 
 module.exports = router;
