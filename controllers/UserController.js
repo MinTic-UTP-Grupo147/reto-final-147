@@ -2,7 +2,8 @@ const config = require('../secret/config.js');
 const db = require('../models');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-
+// importar el metodo endcode del token
+const tokenServices = require('../services/token');
 
 
 exports.login = (req,res) =>{
@@ -10,7 +11,7 @@ exports.login = (req,res) =>{
         where:{
             email: req.body.email
         }
-    }).then(user =>{
+    }).then(async user =>{ 
         if(!user){
             return res.status(404).send('User Not Found.');
         }
@@ -18,13 +19,7 @@ exports.login = (req,res) =>{
         if(!passwordIsValid){
             return res.status(401).send({ auth: false, accessToken: null, reason: "Invalid Password!"});
         }
-        var token = jwt.sign({
-            id: user.id, 
-            name: user.name, 
-            email: user.email},config.secret,{
-                expiresIn: 86400
-            });
-
+        const token = await tokenServices.encode(user);
         res.status(200).send({auth: true, tokenReturn: token});    
     }).catch(err =>{
         res.status(500).send('Error ->' + err);

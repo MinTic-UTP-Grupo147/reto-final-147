@@ -12,11 +12,11 @@ const auth = require('../../middlewares/auth')
 router.post('/login', userController.login);
 
 //usar un controlador para listar los usuarios
-router.use('/list',auth.verifyUsuario, userController.list);
+router.use('/list',auth.verificarVendedor, userController.list);
 // usar un controlador para registrar usuarios
-router.post('/register',auth.verifyUsuario, userController.register)
+router.post('/register',auth.verificarAdministrador, userController.register)
 // usar un controlador para actualizar usuario
-router.put('/update',auth.verifyUsuario, userController.update)
+router.put('/update',auth.verificarAdministrador, userController.update)
 
 // exportar este router
 
