@@ -14,7 +14,7 @@ const categoriaRouter = require('./api/categoria');
 
 // Decirle que use las diferentes rutas
 router.use('/usuario', apiRouterUser);
-//router.use('/categoria', categoriaRouter);
-//router.use('/articulo', articuloRouter);
+router.use('/categoria', categoriaRouter);
+router.use('/articulo', articuloRouter);
 
 module.exports = router;

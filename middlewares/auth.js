@@ -25,10 +25,11 @@ module.exports = {
             });
         }else{
             const response = await tokenService.decode(req.headers.token);
-            if(response.rol === "Administrador"){
+            if(response.rol === 'Administrador'){
                 next();
             }else{
-                return res.status(403).sen({
+                return res.status(403).send({
+                    
                     message: 'Ususario sin permiso'
                 });
             }
@@ -41,10 +42,10 @@ module.exports = {
             });
         }else{
             const response = await tokenService.decode(req.headers.token);
-            if(response.rol === "Administrador" || response.rol === "Vendedor"){
+            if(response.rol == 'Administrador' || response.rol === "Vendedor"){
                 next();
             }else{
-                return res.status(403).sen({
+                return res.status(403).send({
                     message: 'Ususario sin permiso'
                 });
             }

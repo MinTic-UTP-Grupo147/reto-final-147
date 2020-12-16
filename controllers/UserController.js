@@ -20,7 +20,7 @@ exports.login = (req,res) =>{
             return res.status(401).send({ auth: false, accessToken: null, reason: "Invalid Password!"});
         }
         const token = await tokenServices.encode(user);
-        res.status(200).send({auth: true, tokenReturn: token});    
+        res.status(200).send({auth: true, tokenReturn: token, decodificado: deco});    
     }).catch(err =>{
         res.status(500).send('Error ->' + err);
     });

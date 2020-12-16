@@ -1,21 +1,21 @@
 var jwt = require('jsonwebtoken');
 const models = require('../models');
-const config = require('../secret/config.js');
+const config = require('../secret/config');
 
-const checkToken = async (token) =>{
-    let localId = null;
+const checkToken = async(token) =>{
+    var localId = null;
     try {
-        const{id} = token.decode(token);
+        const id = await token.decode(token);
         localId = id;
     } catch (error) {
         
-    }
+    };
     const user = await models.Usuario.findOne({where:{
-        id: id,
+        id: localId,
         estado: 1,
     }});
     if(user){
-        const token = encode(user)
+        const token = encode(user);
         return{
             token,
             rol: user.rol
@@ -30,7 +30,7 @@ module.exports = {
 
     //generar el token
     encode: async(user) => {
-        var token = await jwt.sign({
+        const token = jwt.sign({
             id: user.id, 
             name: user.name, 
             email: user.email,
@@ -44,17 +44,17 @@ module.exports = {
     //permite decodificar el token 
     decode: async(token) => {
         try {
-            const{id} = await jwt.verify(token, config.secret);
+            const {id} = await jwt.verify(token, config.secret);
             const user = await models.Usuario.findOne({where:{
                 id: id,
-                estado: 1,
+                estado: 1
             }});
             if(user){
                 return user;
             }else{
                 return false;
             }
-        } catch (e) {
+        } catch (error) {
             const newToken = await checkToken(token);
             return newToken;
         }

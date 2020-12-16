@@ -10,7 +10,8 @@ const apiRouter = require('./routes');
 const bodyParser = require('body-parser');
 // importar manejador cors
 const cors = require('cors');
-
+// importamos la clave
+// const config = require('./config/config.json');
 // llamado a mi aplicacion
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 // usar el cors
 app.use(cors());
 
+// app.set('llave',config.llave);
 app.get('/', function(req, res) {
     db.user.findAll().then(users => res.json(users))
 });
