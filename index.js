@@ -46,8 +46,10 @@ app.use('/api', apiRouter) ;
 // Escoger el puerto 
 app.set('PORT', process.env.PORT || 3000);
 // mostrar un mensaje en la consola que si este el servidor
-app.listen(app.get('PORT'), ()=>{
+if(process.env.NODE_ENV !== 'test'){
+    app.listen(app.get('PORT'), ()=>{
     console.log(`Running on http://localhost:${app.get('PORT')}`)
-});
+    });
+}    
 
 module.exports = app;
