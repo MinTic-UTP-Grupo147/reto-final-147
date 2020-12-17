@@ -5,7 +5,7 @@ const config = require('../secret/config');
 const checkToken = async(token) =>{
     var localId = null;
     try {
-        const id = await token.decode(token);
+        const id = await jwt.decode(token); /// provar si falla con token .decode(token);
         localId = id;
     } catch (error) {
         
