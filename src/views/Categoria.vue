@@ -1,13 +1,13 @@
 <template>
-    <la-categoria></la-categoria>
+    <categoria-component></categoria-component>
 </template>
 
 <script>
-import LaCategoria from '../components/LaCategoria'
+import CategoriaComponent from '../components/CategoriaComponent'
  
 export default {
     components:{
-        LaCategoria,
+        CategoriaComponent,
     }
 }
 </script>
