@@ -2,10 +2,12 @@
   <div id="app">
     <v-app id="inspire">
       <v-data-table
-        :headers="headers"
+        :headers="headers"   
         :items="categorias"   
         sort-by="nombre"
         class="elevation-1"
+        :loading="cargando"
+        loading-text="Loading.... Please wait"
       >
         <template v-slot:top>
           <v-toolbar flat>
@@ -32,36 +34,28 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="4">
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="editedItem.name"
-                          label="Dessert name"
+                          v-model="editedItem.nombre"
+                          label="Nombre"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" sm="6" md="4">
+                      <v-col cols="12">
+                        <v-textarea
+                          v-model="editedItem.descripcion"
+                          label="Descripción"
+                          auto-grow
+                          no-resize
+                          counter="250"
+                        ></v-textarea>
+                      </v-col>
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="editedItem.calories"
-                          label="Calories"
+                          v-model="editedItem.estado"
+                          label="Estado"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.fat"
-                          label="Fat (g)"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.carbs"
-                          label="Carbs (g)"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.protein"
-                          label="Protein (g)"
-                        ></v-text-field>
-                      </v-col>
+                      
                     </v-row>
                   </v-container>
                 </v-card-text>
@@ -77,9 +71,12 @@
             </v-dialog>
             <v-dialog v-model="dialogDelete" max-width="500px">
               <v-card>
-                <v-card-title class="headline"
-                  >Are you sure you want to delete this item?</v-card-title
-                >
+                
+                <v-card-title class="headline">
+                  <template v-if="editedItem.estado">Quieres Desactivar la categoría?</template>
+                  <template v-else>Quieres Activar la categoría?</template>
+                </v-card-title>
+                
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" text @click="closeDelete"
@@ -98,7 +95,12 @@
           <v-icon small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
-          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+          <v-icon 
+          medium 
+          @click="deleteItem(item)">
+           <template v-if="item.estado">mdi-toggle-switch</template>
+           <template v-else>mdi-toggle-switch-off-outline</template>
+          </v-icon>
         </template>
         <template v-slot:no-data>
           <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -115,28 +117,32 @@ export default {
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    cargando: true,
     headers: [
       {
-        text: "Categoría",
+        text: "ID",
         align: "start",
         sortable: true,
-        value: "nombre",
+        value: "id",
       },
+      { text: "Categoría", value: "nombre" },
       { text: "Descripción", value: "descripcion" },
       { text: "Estado", value: "estado" },      
       { text: "Actions", value: "actions", sortable: false },
     ],
-    desserts: [],
+    
     categorias: [],  /// array vacio para almacenar lo traido de db
 
     editedIndex: -1,
     editedItem: {
+      id: 0,
       nombre: "",
       descripcion: "",
       estado: 0,
       
     },
     defaultItem: {
+      id: 0,
       nombre: "",
       descripcion: "",
       estado: 0,
@@ -160,26 +166,16 @@ export default {
   },
 
   created() {
-    this.list();
+    this.list();  // se ejecuta inmediatamente se abre la pagina
   },
 
   methods: {
-    initialize() {
-      this.desserts = [
-        {
-          nombre: "Frozen Yogurt",
-          descripcion: 159,
-          estado: 6.0,
-          
-        },
-        
-      ];
-    },
-
+   
     list(){
       axios.get('http://localhost:3000/api/categoria/list')
       .then(response =>{
-        this.categorias = response.data;
+        this.categorias = response.data;   // llenar el array de arriba con lo que hay en la db
+        this.cargando = false;
       })
       .catch(error =>{
         console.log(error);
@@ -187,19 +183,43 @@ export default {
     },
 
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = item.id;
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = item.id;
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
+       if (this.editedItem.estado === 1 ) {
+        // ya existe entonces modificar con un put
+        axios.put('http://localhost:3000/api/categoria/deactivate',{
+          "id": this.editedItem.id,
+         
+        })
+          .then(response =>{
+            this.list();
+          })
+          .catch(error =>{
+            return error;
+          })
+       
+      } else {
+        // no existe entonces crear con un post
+        axios.put('http://localhost:3000/api/categoria/activate',{       
+          "id": this.editedItem.id,
+        })
+          .then(response =>{
+            this.list();
+          })
+          .catch(error =>{
+            return error;
+          })
+      }
       this.closeDelete();
     },
 
@@ -221,9 +241,33 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
+        // ya existe entonces modificar con un put
+        axios.put('http://localhost:3000/api/categoria/update',{
+          "id": this.editedItem.id,
+          "nombre": this.editedItem.nombre,
+          "descripcion": this.editedItem.descripcion,
+          "estado": this.editedItem.estado,
+        })
+          .then(response =>{
+            this.list();
+          })
+          .catch(error =>{
+            return error;
+          })
+       
       } else {
-        this.desserts.push(this.editedItem);
+        // no existe entonces crear con un post
+        axios.post('http://localhost:3000/api/categoria/add',{       
+          "nombre": this.editedItem.nombre,
+          "descripcion": this.editedItem.descripcion,
+          "estado": this.editedItem.estado,
+        })
+          .then(response =>{
+            this.list();
+          })
+          .catch(error =>{
+            return error;
+          })
       }
       this.close();
     },
