@@ -4,7 +4,14 @@ const db = require('../models');
 // crear y exportar metodo list
 exports.list = async(req,res,next)=>{
     try {
-        const registro = await db.Articulo.findAll();
+        const registro = await db.Articulo.findAll({
+            
+            include:[{
+                model: db.Categoria,
+                as: 'categoria',
+                
+            }]
+        });
     res.status(200).json(registro);
     } catch (error) {
         res.status(500).send({
@@ -30,7 +37,7 @@ exports.add = async(req,res,next)=>{
 // crear y exportar metodo update
 exports.update = async(req,res,next)=>{
     try {
-        const registro = await db.Articulo.update({nombre: req.body.nombre, descripcion: req.body.descripcion},{
+        const registro = await db.Articulo.update({categoriaId: req.body.categoria,codigo: req.body.codigo, nombre: req.body.nombre, descripcion: req.body.descripcion},{
             where:{
                 id: req.body.id
             },
