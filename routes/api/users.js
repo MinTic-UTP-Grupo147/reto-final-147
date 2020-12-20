@@ -13,10 +13,14 @@ router.post('/login', userController.login);
 
 //usar un controlador para listar los usuarios
 router.use('/list', userController.list);
+router.post('/add', userController.add);
+router.put('/update', userController.update);
+router.put('/activate', userController.activate);
+router.put('/deactivate', userController.deactivate);
 // usar un controlador para registrar usuarios
-router.post('/register',auth.verificarAdministrador, userController.register);
+// router.post('/register',auth.verificarAdministrador, userController.register);
 // usar un controlador para actualizar usuario
-router.put('/update',auth.verificarAdministrador, userController.update)
+// router.put('/update',auth.verificarAdministrador, userController.update)
 
 // exportar este router
 
