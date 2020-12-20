@@ -1,7 +1,7 @@
 <template>
     <form class="w-50 p-3 position-absolute top-50 start-50 translate-middle border border-3">
             <img class="mb-4" src="https://placeimg.com/72/57/arch/grayscale" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <h1 class="h3 mb-3 fw-normal">Please Login</h1>
         
             <label for="inputEmail" class="visually-hidden">Email address</label>
             <input 
@@ -34,7 +34,7 @@
 <script>
 
 import swal from 'sweetalert';
-
+import axios from 'axios';
 export default {
     data(){
         return{
@@ -45,23 +45,25 @@ export default {
         }
     },
     methods:{
-        async loginUser(){
-            try{
-                let response = await this.$http.post('/api/auth/signin',this.login);
-                let token = response.data.accessToken;
-                let user = response.data.user;
-
-                localStorage.setItem('jwt', token);
-                localStorage.setItem('user', JSON.stringify(user));
-
-                if(token){
-                    swal("Correcto","Login correcto","success")
-                    this.$router.push('/home');
-                }
-            }
-            catch(e){
-                swal("Invalido","Login incorrecto","error")
-            }
+        
+        loginUser(){
+            axios.post('http://localhost:3000/api/usuario/login', this.login)
+                .then(response =>{
+                    
+                    return response.data;
+                })
+                .then(data =>{
+                    this.$store.dispatch("guardarToken",data.accessToken)
+                    this.$router.push({name: 'Acceso'})
+                    swal("Correcto","Login correcto","success");
+                    console.log(data);
+                })
+                .catch(error =>{
+                    swal("Invalido","Login incorrecto","error");
+                    console.log(error);
+                    return error;
+                })
+           
 
         }
     }
