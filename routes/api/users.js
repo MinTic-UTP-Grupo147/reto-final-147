@@ -12,11 +12,11 @@ const auth = require('../../middlewares/auth')
 router.post('/login', userController.login);
 
 //usar un controlador para listar los usuarios
-router.use('/list', userController.list);
-router.post('/add', userController.add);
-router.put('/update', userController.update);
-router.put('/activate', userController.activate);
-router.put('/deactivate', userController.deactivate);
+router.use('/list',auth.verificarAdministrador, userController.list);
+router.post('/add',auth.verificarAdministrador, userController.add);
+router.put('/update',auth.verificarAdministrador, userController.update);
+router.put('/activate',auth.verificarAdministrador, userController.activate);
+router.put('/deactivate',auth.verificarAdministrador, userController.deactivate);
 // usar un controlador para registrar usuarios
 // router.post('/register',auth.verificarAdministrador, userController.register);
 // usar un controlador para actualizar usuario

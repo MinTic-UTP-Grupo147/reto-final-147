@@ -8,9 +8,9 @@ const { verificarAdministrador } = require('../../middlewares/auth');
 const auth = require('../../middlewares/auth')
 
 router.get('/list', categoriaController.list);
-router.post('/add', categoriaController.add);
-router.put('/update', categoriaController.update);
-router.put('/activate', categoriaController.activate);
-router.put('/deactivate', categoriaController.deactivate);
+router.post('/add',auth.verificarAdministrador, categoriaController.add);
+router.put('/update',auth.verificarAdministrador, categoriaController.update);
+router.put('/activate',auth.verificarAdministrador, categoriaController.activate);
+router.put('/deactivate',auth.verificarAdministrador, categoriaController.deactivate);
 
 module.exports = router;
