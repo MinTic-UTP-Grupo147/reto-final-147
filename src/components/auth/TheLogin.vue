@@ -53,8 +53,8 @@ export default {
                     return response.data;
                 })
                 .then(data =>{
-                    this.$store.dispatch("guardarToken",data.accessToken)
-                    this.$router.push({name: 'Acceso'})
+                    this.$store.dispatch("guardarToken",data.tokenReturn);
+                    this.$router.push('/acceso');
                     swal("Correcto","Login correcto","success");
                     console.log(data);
                 })

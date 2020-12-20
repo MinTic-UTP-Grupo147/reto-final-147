@@ -94,7 +94,7 @@ router.beforeEach((to,from,next) =>{
     if(store.sate.user){
       next();
     }else{
-      next({name:'Login'})
+      next({name:'Login'});
     }
   }else{
     next();
