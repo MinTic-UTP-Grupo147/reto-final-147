@@ -305,7 +305,8 @@ export default {
           "codigo": this.editedItem.codigo,
           "nombre": this.editedItem.nombre,
           "descripcion": this.editedItem.descripcion,
-          "categoriaId": this.categoria.id,   
+          "categoriaId": this.categoria.id,  
+          "estado": this.categoria.id, 
        
         })
           .then(response =>{

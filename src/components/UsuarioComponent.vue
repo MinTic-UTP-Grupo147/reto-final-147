@@ -58,6 +58,12 @@
                           label="Rol"
                         ></v-text-field>
                       </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="editedItem.estado"
+                          label="Estado"
+                        ></v-text-field>
+                      </v-col>
                       
                     </v-row>
                   </v-container>
@@ -252,12 +258,10 @@ export default {
         // ya existe entonces modificar con un put
         axios.put('http://localhost:3000/api/usuario/update',{
           "id": this.editedItem.id,
-          "codigo": this.editedItem.codigo,
           "nombre": this.editedItem.nombre,
           "email": this.editedItem.email,
-          "password": this.editedItem.password,
           "rol": this.editedItem.rol,
-          "estado": this.editedItem.estado,
+          
         })
           .then(response =>{
             this.list();

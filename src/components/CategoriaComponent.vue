@@ -246,7 +246,7 @@ export default {
           "id": this.editedItem.id,
           "nombre": this.editedItem.nombre,
           "descripcion": this.editedItem.descripcion,
-          "estado": this.editedItem.estado,
+          
         })
           .then(response =>{
             this.list();
