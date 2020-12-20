@@ -123,6 +123,7 @@
 import axios from 'axios';
 
 export default {
+  name:'UsuarioComponent',
   data: () => ({
     dialog: false,
     dialogDelete: false,

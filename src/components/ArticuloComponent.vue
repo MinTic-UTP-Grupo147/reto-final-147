@@ -130,6 +130,7 @@
 import axios from 'axios';
 
 export default {
+  name: 'ArticuloComponent',
   data: () => ({
     dialog: false,
     dialogDelete: false,

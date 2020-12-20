@@ -114,6 +114,7 @@
 import axios from 'axios';
 
 export default {
+  name:'CategoriaComponent',
   data: () => ({
     dialog: false,
     dialogDelete: false,
