@@ -94,19 +94,6 @@ export default {
       
     ],
   }),
-  created(){
-    this.$store.dispatch("autoLogin");
-  },
-  computed:{
-    logueado(){
-      return this.$store.state.usuario;
-    }
-  },
-  methods:{
-    salir(){
-      this.$store.dispatch("salir");
-    }
-  },
-
+  
 };
 </script>
