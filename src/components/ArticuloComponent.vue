@@ -42,6 +42,12 @@
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
+                          v-model="editedItem.imagen"
+                          label="Imagen"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
                           v-model="editedItem.nombre"
                           label="Nombre"
                         ></v-text-field>
@@ -142,6 +148,7 @@ export default {
         sortable: true,
         value: "codigo",
       },
+      { text: "Imagen", value: "imagen" },
       { text: "Nombre", value: "nombre" },
       { text: "Descripción", value: "descripcion" },
       { text: "Categoría", value: "categoria.nombre"},
@@ -156,6 +163,7 @@ export default {
     editedIndex: -1,
     editedItem: {
       id:0,
+      imagen:"",
       codigo: 0,
       nombre: "",
       descripcion: "",
@@ -168,6 +176,7 @@ export default {
     },
     defaultItem: {
       id:0,
+      imagen:"",
       codigo: 0,
       nombre: "",
       descripcion: "",
