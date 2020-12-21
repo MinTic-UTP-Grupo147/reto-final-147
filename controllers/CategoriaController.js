@@ -31,8 +31,7 @@ exports.add = async(req,res,next)=>{
 exports.update = async(req,res,next)=>{
     try {
         const registro = await db.Categoria.update({nombre: req.body.nombre, 
-            descripcion: req.body.descripcion, 
-            estado: req.body.estado},{
+            descripcion: req.body.descripcion},{
             where:{
                 id: req.body.id
             },
