@@ -4,7 +4,15 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Sección {{this.$store.state.usuario.rol}}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+      icon
+      class="mr-5"
+      @click="salir()">
+        <v-icon>mdi-logout</v-icon>
+        <span>salir</span>
+      </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" fixed temporary>
@@ -94,6 +102,11 @@ export default {
       
     ],
   }),
+  methods:{
+    salir(){
+      this.$store.dispatch('salir');
+    }
+  }
   
 };
 </script>
