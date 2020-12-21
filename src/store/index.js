@@ -8,14 +8,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state:{
         token: null,
-        user: null,
+        usuario: null,
     },
     mutations:{
         setToken(state,token){
             state.token =token;
         },
         setUsuario(state,usuario){
-            state.user = usuario;
+            state.usuario = usuario;
         },
        
     },

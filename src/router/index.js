@@ -82,10 +82,18 @@ const router = new VueRouter({
   routes
 });
 
-// router.beforeEach((to,from,next) =>{
-//   if(to.matched.some(record => record.meta.public)){
-//     next();
-//   }else if(to.matched.some(record => record.meta.auth)){
+router.beforeEach((to,from,next) =>{
+  if(to.matched.some(record => record.meta.public)){
+    next();
+  }else if (store.state.usuario){
+    if(to.matched.some(record => record.meta.auth)){
+      console.log(store.state.usuario);
+      next();
+    }
+  }else{
+      next({name:'Login'})
+  }
+})
 //     // if(store.sate.user && store.state.user.rol === 'Administrador'){
 //     //   next();
 //     // }else{
