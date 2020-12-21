@@ -1,8 +1,10 @@
 <template>
+<div>
   <v-app id="inspire">
     
     <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon 
+      @click="drawer = !drawer; ocultar()"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Sección {{this.$store.state.usuario.rol}}</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -13,6 +15,7 @@
         <v-icon>mdi-logout</v-icon>
         <span>salir</span>
       </v-btn>
+      
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" fixed temporary>
@@ -25,12 +28,7 @@
 
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-
-          <!-- <v-list-group :value="true" prepend-icon="mdi-account-circle"> -->
-            <!-- <template v-slot:activator>
-              <v-list-item-title>Users</v-list-item-title>
-            </template> -->
-
+          
             <v-list-group :value="true" no-action >
               <template v-slot:activator>
                 <v-list-item-content>
@@ -63,7 +61,8 @@
               v-for="([title, icon, ruta], i) in cruds" 
               :key="i" 
               link
-              :to="{name:ruta}">
+              :to="{name:ruta}"
+              >
                 <v-list-item-title v-text="title"></v-list-item-title>
 
                 <v-list-item-icon>
@@ -71,7 +70,7 @@
                 </v-list-item-icon>
               </v-list-item>
             </v-list-group>
-          <!-- </v-list-group> -->
+          
         </v-list>
       </v-card>
     </v-navigation-drawer>
@@ -79,12 +78,30 @@
     <v-main class="grey lighten-2">
       <v-container>
         <router-view></router-view>
+        <div id='informacion' style="display:;">
+          <div class="container mt-5">
+        <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
+        <div class="card-header">
+        <h3>Bienvenido</h3> 
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h5>Id:</h5>{{this.$store.state.usuario.id}}</li>
+            <li class="list-group-item"> <h5>Name:</h5>{{this.$store.state.usuario.nombre}}</li>
+            <li class="list-group-item"><h5>Email:</h5>{{this.$store.state.usuario.email}}</li>
+            <li class="list-group-item"><h5>Rol:</h5>{{this.$store.state.usuario.rol}}</li>
+            <li class="list-group-item"><h5>Estado:</h5>{{this.$store.state.usuario.status}}</li>
+        </ul>
+        </div>
+    </div>
+        </div>
       </v-container>
     </v-main>
   </v-app>
+   
+  </div>
 </template>
 
-<script>
+<script informacion="javascript">
 
 export default {
   name: "AccesoComponent",
@@ -108,6 +125,10 @@ export default {
   methods:{
     salir(){
       this.$store.dispatch('salir');
+    },
+    ocultar(){
+      const div = document.querySelector('#informacion');
+      div.style.display = 'none';
     }
   }
   

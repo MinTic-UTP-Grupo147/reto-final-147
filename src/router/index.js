@@ -39,7 +39,8 @@ const routes = [
     meta:{
       auth: true
     },
-    children:[{
+    children:[    
+      {
       path: 'categoria',
       name: 'Categoria',
       // route level code-splitting
