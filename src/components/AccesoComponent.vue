@@ -50,7 +50,9 @@
               </v-list-item>
             </v-list-group>
 
-            <v-list-group no-action >
+            <v-list-group 
+            v-if="this.$store.state.usuario.rol === 'Administrador'"
+            no-action >
               <template v-slot:activator>
                 <v-list-item-content>
                   <v-list-item-title>Usuario</v-list-item-title>

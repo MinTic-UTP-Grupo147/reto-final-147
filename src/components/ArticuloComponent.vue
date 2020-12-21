@@ -241,6 +241,10 @@ export default {
         axios.put('http://localhost:3000/api/articulo/deactivate',{
           "id": this.editedItem.id,
          
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -253,6 +257,10 @@ export default {
         // no existe entonces crear con un post
         axios.put('http://localhost:3000/api/articulo/activate',{       
           "id": this.editedItem.id,
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -291,6 +299,10 @@ export default {
           "descripcion": this.editedItem.descripcion,
           "categoria": this.categoria.id,   // en el backend se puso req.body.categoria
           
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -309,6 +321,10 @@ export default {
           "categoriaId": this.categoria.id,  
           "estado": this.categoria.id, 
        
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();

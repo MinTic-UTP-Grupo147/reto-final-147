@@ -137,7 +137,7 @@ export default {
       },
       { text: "Nombre", value: "nombre" },
       { text: "Correo", value: "email" },
-      { text: "Clave", value: "password" },      
+            
       { text: "Rol", value: "rol" }, 
       { text: "Estado", value: "estado" }, 
       { text: "Actions", value: "actions", sortable: false },
@@ -187,7 +187,11 @@ export default {
   methods: {
    
     list(){
-      axios.get('http://localhost:3000/api/usuario/list')
+      axios.get('http://localhost:3000/api/usuario/list',{
+        headers:{
+          token: this.$store.state.token
+        }
+      })
       .then(response =>{
         this.usuarios = response.data;   // llenar el array de arriba con lo que hay en la db
         this.cargando = false;
@@ -215,6 +219,10 @@ export default {
         axios.put('http://localhost:3000/api/usuario/deactivate',{
           "id": this.editedItem.id,
          
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -227,6 +235,10 @@ export default {
         // no existe entonces crear con un post
         axios.put('http://localhost:3000/api/usuario/activate',{       
           "id": this.editedItem.id,
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -263,6 +275,10 @@ export default {
           "email": this.editedItem.email,
           "rol": this.editedItem.rol,
           
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -281,6 +297,10 @@ export default {
           "password": this.editedItem.password,
           "rol": this.editedItem.rol,
           "estado": this.editedItem.estado,
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();

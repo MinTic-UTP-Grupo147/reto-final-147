@@ -69,7 +69,8 @@ const routes = [
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue'),
       meta:{
-        auth: true
+        auth: true,
+        Administrador: true,
       }
     },]
   },

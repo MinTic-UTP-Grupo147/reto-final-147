@@ -15,8 +15,11 @@
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
             <v-dialog v-model="dialog" max-width="500px">
-              <template v-slot:activator="{ on, attrs }">
+              <template 
+              
+              v-slot:activator="{ on, attrs }">
                 <v-btn
+                v-if="this.$store.state.usuario.rol === 'Administrador'"
                   color="primary"
                   dark
                   class="mb-2"
@@ -91,7 +94,9 @@
             </v-dialog>
           </v-toolbar>
         </template>
-        <template v-slot:item.actions="{ item }">
+        <template 
+        v-if="this.$store.state.usuario.rol === 'Administrador'"
+        v-slot:item.actions="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
@@ -201,6 +206,10 @@ export default {
         axios.put('http://localhost:3000/api/categoria/deactivate',{
           "id": this.editedItem.id,
          
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -213,6 +222,10 @@ export default {
         // no existe entonces crear con un post
         axios.put('http://localhost:3000/api/categoria/activate',{       
           "id": this.editedItem.id,
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -248,6 +261,10 @@ export default {
           "nombre": this.editedItem.nombre,
           "descripcion": this.editedItem.descripcion,
           
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
@@ -262,6 +279,10 @@ export default {
           "nombre": this.editedItem.nombre,
           "descripcion": this.editedItem.descripcion,
           "estado": this.editedItem.estado,
+        },{
+        headers:{
+          token: this.$store.state.token
+        }
         })
           .then(response =>{
             this.list();
