@@ -44,6 +44,10 @@ export default {
             }
         }
     },
+    
+     beforeCreate(){
+    this.$store.dispatch("autoLogin")? this.$router.push({name: 'Acceso'}) : false;
+     },
     methods:{
         
         loginUser(){

@@ -102,6 +102,7 @@ export default {
       
     ],
   }),
+ 
   methods:{
     salir(){
       this.$store.dispatch('salir');
