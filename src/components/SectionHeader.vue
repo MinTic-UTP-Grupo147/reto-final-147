@@ -35,7 +35,7 @@
         <v-tabs class="d-none d-sm-flex">
             <v-tab href="#">Inicio</v-tab>
             <v-tab href="#somos">Quiénes somos?</v-tab>
-            <v-tab href="#servicios"
+            <v-tab href="#services"
             >Servicios</v-tab>
             <v-tab href="#casos">Casos de éxito</v-tab>
         <v-tab> 

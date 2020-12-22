@@ -9,10 +9,9 @@
           sm="4"
         >
           <v-card class="mx-auto" max-width="344">
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              height="200px"
-            ></v-img>
+                    
+            <img 
+            :src="servicio.imagen" max-width="344" height="250"></img>
 
             <v-card-title> {{servicio.nombre}} </v-card-title>
 
@@ -58,12 +57,14 @@ export default {
   data() {
     return {
       servicios: null,
+      show:false,
     };
   },
   mounted() {
     axios.get("http://localhost:3000/api/articulo/list").then((response) => {
       console.log(response);
-      this.servicios = response.data;
+      this.servicios = response.data;  
+         
     });
   },
 };

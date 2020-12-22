@@ -306,6 +306,7 @@ export default {
         // ya existe entonces modificar con un put
         axios.put('http://localhost:3000/api/articulo/update',{
           "id": this.editedItem.id,
+          "imagen":this.editedItem.imagen,
           "codigo": this.editedItem.codigo,
           "nombre": this.editedItem.nombre,
           "descripcion": this.editedItem.descripcion,
@@ -327,6 +328,7 @@ export default {
         // no existe entonces crear con un post
         axios.post('http://localhost:3000/api/articulo/add',{       
           "id": this.editedItem.id,
+          "imagen":this.editedItem.imagen,
           "codigo": this.editedItem.codigo,
           "nombre": this.editedItem.nombre,
           "descripcion": this.editedItem.descripcion,
