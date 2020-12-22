@@ -31,16 +31,6 @@ app.use(bodyParser.urlencoded({ extended: true}));
 // usar el cors
 app.use(cors());
 
-// app.set('llave',config.llave);
-app.get('/', function(req, res) {
-    db.user.findAll().then(users => res.json(users))
-});
-
-
-app.get('/api/users',(req,res)=>{
-    db.user.findAll().then(users => res.json(users))
-});
-
 app.use('/api', apiRouter) ;
 
 // Escoger el puerto 

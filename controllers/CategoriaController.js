@@ -30,8 +30,12 @@ exports.add = async(req,res,next)=>{
 // crear y exportar metodo update
 exports.update = async(req,res,next)=>{
     try {
-        const registro = await db.Categoria.update({nombre: req.body.nombre, 
-            descripcion: req.body.descripcion},{
+        const registro = await db.Categoria.update({
+            nombre: req.body.nombre, 
+            descripcion: req.body.descripcion,
+            codigo:req.body.codigo,
+            id:req.body.id,
+        },{
             where:{
                 id: req.body.id
             },
