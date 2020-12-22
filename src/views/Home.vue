@@ -12,7 +12,7 @@
             <div class="d-flex justify-content-center "><h2>Servicios</h2></div>
             <div class="row justify-content-around" >
               <v-divider inset></v-divider>
-              <section-noticias id="services" ></section-noticias>
+              <section-noticias ></section-noticias>
             </div>
      </section>
       <section class="container-fluid " style="margin-top:10px;">
@@ -24,7 +24,7 @@
      </section>
     
      
-     <page-footer></page-footer>            
+     <page-footer value="services"></page-footer>            
 </div>
 </template>
 

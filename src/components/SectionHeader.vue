@@ -58,11 +58,11 @@ export default {
   data: () => ({
     drawer: null,
     admins: [
-      ["Categoría", "mdi-information", "Categoria"],
-      ["Articulo", "mdi-form-select", "Articulo"],
+      ["Quines somos?", "mdi-information"],
+      ["Servicios", "mdi-form-select"],
+      ["Casos de exito", "mdi-form-select"],
     ],
-    cruds: [["Usuario", "mdi-account-circle", "Usuario"]],
-
+    
     items: [
       {
         src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",

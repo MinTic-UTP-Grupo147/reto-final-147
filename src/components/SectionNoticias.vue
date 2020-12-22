@@ -8,17 +8,18 @@
           cols="12"
           sm="4"
         >
-          <v-card class="mx-auto" max-width="344">
+          <v-card class="mx-auto" width="344">
                     
             <img 
-            :src="servicio.imagen" max-width="344" height="250"></img>
+            :src="servicio.imagen" max-width="344" height="250">
+            
 
             <v-card-title> {{servicio.nombre}} </v-card-title>
 
-            <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+            <v-card-subtitle> {{servicio.categoria.nombre}} </v-card-subtitle>
 
             <v-card-actions>
-              <v-btn color="orange lighten-2" text> Explore </v-btn>
+              <v-btn color="blue lighten-2" text> Descripcion </v-btn>
 
               <v-spacer></v-spacer>
 
@@ -34,12 +35,7 @@
                 <v-divider></v-divider>
 
                 <v-card-text>
-                  I'm a thing. But, like most politicians, he promised more than
-                  he could deliver. You won't have time for sleeping, soldier,
-                  not with all the bed making you'll be doing. Then we'll go
-                  with that data file! Hey, you add a one and two zeros to that
-                  or we walk! You're going to do his laundry? I've got to find a
-                  way to escape.
+                  {{servicio.descripcion}}
                 </v-card-text>
               </div>
             </v-expand-transition>
