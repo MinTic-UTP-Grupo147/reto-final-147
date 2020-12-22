@@ -8,13 +8,14 @@
               <section-quienes id="somos"></section-quienes>            
   </section>
   
-     <section class="container-fluid" style="margin-top:10px;">
+     <section class="container-fluid " style="margin-top:10px;">
             <div class="d-flex justify-content-center "><h2>Servicios</h2></div>
-            <div class="row justify-content-around">
+            <div class="row justify-content-around" >
               <v-divider inset></v-divider>
               <section-noticias id="servicios" ></section-noticias>
             </div>
      </section>
+     
      <page-footer></page-footer>            
 </div>
 </template>

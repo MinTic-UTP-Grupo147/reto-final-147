@@ -1,46 +1,70 @@
 <template>
-    
-    <div>        
-        <div class="row mt-md-5 mt-sm-5 mt-xs-5">    
-            <div class="col-lg-6 col-xs-12" v-for="(servicio, index) of servicios" :key="index">
-                <div class="d-flex justify-content-center align-items-center" >
-                    <div class="p-3">
-                        <img :src="servicio.imagen" alt="">
-                    </div>
-                    <div class="p-2">
-                        <h2>{{servicio.id}}</h2>
-                        <hr>
-                        <p>
-                            <samp>Tipo :{{servicio.nombre}}</samp> 
-                            <br>
-                            <samp>Año :{{servicio.codigo}}</samp>
-                        </p>
-                    </div>
-                </div>      
-            <div class="d-flex container-fluid justify-content-end pb-2 mt-n2">
-            </div>
-        </div>                                  
-    </div>
-    </div>
+  <div>
+    <v-container class="grey lighten-5">
+      <v-row no-gutters>
+        <v-col
+          v-for="(servicio, index) of servicios"
+          :key="index"
+          cols="12"
+          sm="4"
+        >
+          <v-card class="mx-auto" max-width="344">
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+              height="200px"
+            ></v-img>
+
+            <v-card-title> {{servicio.nombre}} </v-card-title>
+
+            <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn color="orange lighten-2" text> Explore </v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-btn icon @click="show = !show">
+                <v-icon>{{
+                  show ? "mdi-chevron-up" : "mdi-chevron-down"
+                }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+
+            <v-expand-transition>
+              <div v-show="show">
+                <v-divider></v-divider>
+
+                <v-card-text>
+                  I'm a thing. But, like most politicians, he promised more than
+                  he could deliver. You won't have time for sleeping, soldier,
+                  not with all the bed making you'll be doing. Then we'll go
+                  with that data file! Hey, you add a one and two zeros to that
+                  or we walk! You're going to do his laundry? I've got to find a
+                  way to escape.
+                </v-card-text>
+              </div>
+            </v-expand-transition>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-    name:'SectionNoticias',
-    data(){
-        return{
-            servicios: null
-        }
-    },
-    mounted(){
-        axios
-        .get('http://localhost:3000/api/articulo/list')
-        .then(response =>{
-            console.log(response);
-            (this.servicios = response.data)
-            
-            })
-    }
-}
+  name: "SectionNoticias",
+  data() {
+    return {
+      servicios: null,
+    };
+  },
+  mounted() {
+    axios.get("http://localhost:3000/api/articulo/list").then((response) => {
+      console.log(response);
+      this.servicios = response.data;
+    });
+  },
+};
 </script>

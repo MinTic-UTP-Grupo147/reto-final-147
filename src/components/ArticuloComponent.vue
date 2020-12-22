@@ -17,6 +17,7 @@
             <v-dialog v-model="dialog" max-width="500px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
+                v-if="this.$store.state.usuario.rol === 'Administrador'"
                   color="primary"
                   dark
                   class="mb-2"
@@ -113,7 +114,9 @@
             </v-dialog>
           </v-toolbar>
         </template>
-        <template v-slot:item.actions="{ item }">
+        <template 
+        v-slot:item.actions="{ item }"
+        v-if="this.$store.state.usuario.rol === 'Administrador'">
           <v-icon small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
