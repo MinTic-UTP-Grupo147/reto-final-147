@@ -32,7 +32,7 @@ module.exports = {
     encode: async(user) => {
         const token = jwt.sign({
             id: user.id, 
-            name: user.name, 
+            nombre: user.nombre, 
             email: user.email,
             rol: user.rol,
             status: user.estado
