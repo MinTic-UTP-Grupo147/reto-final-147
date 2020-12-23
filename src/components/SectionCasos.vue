@@ -17,10 +17,10 @@
             >
 
             </v-img>
-            <v-card-title>{{item.titulo}}</v-card-title>
-            <v-card-subtitle class="pb-0" >{{item.subtitulo}}  </v-card-subtitle>
+            <v-card-title class="primary--text">{{item.titulo}}</v-card-title>
+            <v-card-subtitle class="pb-0 primary white--text" >{{item.subtitulo}}  </v-card-subtitle>
 
-            <v-card-text class="text--primary">
+            <v-card-text class="primary--text">
               <div>{{item.texto}}</div>
               
             </v-card-text>

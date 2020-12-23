@@ -30,29 +30,42 @@
       </v-card>
     </v-navigation-drawer>
     
-    <v-app-bar app class="grey lighten-5 justify-space-around d-none d-sm-flex">
+    <v-app-bar app class="success justify-space-around d-none d-sm-flex">
+<!--       <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://www.flaticon.com/svg/static/icons/svg/3523/3523020.svg"
+          transition="scale-transition"
+          width="30"
+        />
+
+        <h3 class="mr-2 primary--text">Edustem</h3>
+      </div> -->
       <v-tabs class="d-none d-sm-flex justify-space-around">
         <v-tab><a href="#inicio" class="nav-link">Inicio</a></v-tab>
         <v-tab><a href="#somos" class="nav-link">Quiénes somos?</a></v-tab>
         <v-tab><a href="#servicios" class="nav-link">Servicios</a></v-tab>
         <v-tab><a href="#casos_de_exito" class="nav-link">Casos de éxito</a></v-tab>
       </v-tabs>
-     
-      <v-btn icon cols="12" class="mr-5" href="login">
+      <v-spacer></v-spacer>
+
+      <v-btn icon cols="12" class="mr-5 primary--text" href="login">
         <v-icon>mdi-login</v-icon>
         <span>Login</span>
       </v-btn>
     </v-app-bar>
 
     <!-- Imagen  carousel -->
-    <v-carousel id="inicio" height="300px">
+    <v-carousel id="inicio" height="500px">
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
         :src="item.src"
         reverse-transition="fade-transition"
         transition="fade-transition"
-        max-height="300px"
+        max-height="500px"
       ></v-carousel-item>
     </v-carousel>
   </header>
@@ -91,10 +104,10 @@ export default {
         src:
           "https://cdn.pixabay.com/photo/2019/09/25/10/29/color-4503279_960_720.jpg",
       },
-      {
+/*       {
         src:
           "https://i.ibb.co/Z67cWc1/EDUSTEM-TRAINING.png",
-      },
+      }, */
 
       
     ],

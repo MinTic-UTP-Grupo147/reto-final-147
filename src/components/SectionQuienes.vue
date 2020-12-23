@@ -23,7 +23,7 @@
  <!--              <div class="font-weight-light grey--text title mb-2">
                 Lo que nos guía...
               </div> -->
-              <h3 class="display-1 font-weight-light blue--text mb-2">
+              <h3 class="display-1 font-weight-light primary--text mb-2">
                 Nuestra razón de ser:
               </h3>
               <div class="font-weight-light title mb-2">
@@ -60,7 +60,7 @@
 <!--               <div class="font-weight-light grey--text title mb-2">
                 For the perfect meal
               </div> -->
-              <h3 class="display-1 font-weight-light blue--text mb-2">
+              <h3 class="display-1 font-weight-light primary--text mb-2">
                 A quienes servimos:
               </h3>
               <div class="font-weight-light title mb-2">
@@ -99,7 +99,7 @@
  <!--              <div class="font-weight-light grey--text title mb-2">
                 For the perfect meal
               </div> -->
-              <h3 class="display-1 font-weight-light blue--text mb-2">
+              <h3 class="display-1 font-weight-light primary--text mb-2">
                 Nuestros productos:
               </h3>
               <div class="font-weight-light title mb-2">

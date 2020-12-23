@@ -1,6 +1,6 @@
 <template>
   <v-footer dark padless class="justify-space-around">
-    <v-card flat tile class="blue lighten-1 white--text text-center">
+    <v-card flat tile class="primary lighten-1 white--text text-center">
       <v-card-text>
         <v-btn
           v-for="icon in icons"
@@ -32,11 +32,11 @@
             <v-card-text class="white--text pt-0">
               <h5 class="text-uppercase">Nuestro equipo:</h5>
               <span>
-                Geraldine Hernández - DEVELOPER - lghv21@gmail.com<br>
-                José Chavarrio - DEVELOPER - jchavarr78@gmail.com<br>
-                Harold Avendaño - DEVELOPER - harolavendanoz18@gmail.com<br>
-                Sebastian Jaramillo - DEVELOPER - sebasjara@gmail.com<br>
-                Juan Camilo Patiño - DEVELOPER - jcpat78@gmail.com
+                <strong>Geraldine Hernández</strong> - Medellin (COL) lghv21@gmail.com - (+57) 321 390 7740<br>
+                <strong>José Chavarrio</strong> - Bogotá D.C. (COL) jchavarr78@gmail.com - (+57) 321 390 7741<br>
+                <strong>Harold Avendaño</strong> - Sogamoso (COL) harolavendanoz18@gmail.com - (+57) 321 390 7742<br>
+                <strong>Sebastian Jaramillo</strong> - La Ceja (COL) sebasjara@gmail.com - (+57) 321 390 7743<br>
+                <strong>Juan Camilo Patiño</strong> - Bogotá D.C. (COL) jcpat78@gmail.com - (+57) 321 390 7744
               </span>
             </v-card-text>
           </div>

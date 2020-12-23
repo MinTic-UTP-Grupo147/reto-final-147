@@ -14,12 +14,12 @@
             :src="servicio.imagen" width="300" height="250"></v-img>
             
 
-            <v-card-title> {{servicio.nombre}} </v-card-title>
+            <v-card-title class= "primary--text"> {{servicio.nombre}} </v-card-title>
 
-            <v-card-subtitle> {{servicio.categoria.nombre}} </v-card-subtitle>
+            <v-card-subtitle class= "secondary--text"> {{servicio.categoria.nombre}} </v-card-subtitle>
 
             <v-card-actions>
-              <v-btn color="blue lighten-2" text> Descripción </v-btn>
+              <v-btn color="info lighten-2" text> Descripción </v-btn>
 
               <v-spacer></v-spacer>
 
